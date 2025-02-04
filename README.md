@@ -42,7 +42,7 @@ Welcome to the **Narutoverse-Themed E-Commerce Store**! This fan-made project im
 
 1. **Clone the Repository**
    ```sh
-   git clone https://github.com/abdulbasit-25/narutoverse-store.git
+   git clone https://github.com/abdulbasit-25/Ecomerce-store---anime-theme
    ```
 2. **Navigate to the Project Directory**
    ```sh
