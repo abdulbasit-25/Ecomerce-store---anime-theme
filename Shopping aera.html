@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shinobi E-Commerce Store</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #121212;
+            background-image: url('kurosaki.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+            padding-top: 80px;
+            /* To make space for the fixed header */
+        }
+
+        /* Header Styling */
+        header {
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            animation: headerAnimation 1.5s ease-out;
+        }
+
+        @keyframes headerAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+            margin-bottom: 10px;
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            position: relative;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 5px 10px;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        header nav a::before {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background-color: #ffd700;
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s;
+        }
+
+        header nav a:hover {
+            color: #ffd700;
+            transform: scale(1.1);
+        }
+
+        header nav a:hover::before {
+            width: 100%;
+        }
+
+        /* Sparkly Animation */
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            animation: sparkleAnimation 1.5s infinite alternate;
+        }
+
+        @keyframes sparkleAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 1s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-300px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .sparkle:nth-child(odd) {
+            animation-delay: 0.2s;
+        }
+
+   /* Container for Products */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 60px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    transition: transform 0.5s ease, filter 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform, filter, and shadow */
+}
+
+/* Hover effect on container */
+.container.zoom:hover {
+    transform: scale(1.05) rotateY(10deg) rotateX(5deg); /* Slightly less aggressive scale and tilt for smoother effect */
+    filter: brightness(1.1) contrast(1.05); /* Subtle brightness and contrast adjustments */
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow for a floating effect */
+} 
+
+
+
+        .product {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            width: 250px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+        }
+
+/* Product Image Styling with 3D Effect */
+.product img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: transform 0.5s ease, filter 0.3s ease;
+    transform-style: preserve-3d; /* Enable 3D transform */
+}
+
+/* Enhanced Zoom and 3D effect on hover */
+.product img.zoom {
+    transition: transform 0.5s ease, filter 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for transform, filter, and shadow */
+}
+
+.product img.zoom:hover {
+    transform: scale(1.2) rotateY(15deg) rotateX(10deg); /* Added slight tilt on X and Y axes for a stronger 3D effect */
+    filter: brightness(1.15) contrast(1.1); /* Increased brightness and added slight contrast for a more dynamic hover effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Added shadow to enhance depth */
+}
+
+
+
+
+        .product h3 {
+            color: #ffd700;
+            margin: 10px 0;
+        }
+
+        .product button {
+            background-color: #333;
+            color: #ddd;
+            border: 1px solid #444;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s;
+        }
+
+        .product button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Cart Styling */
+        .cart {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            max-width: 300px;
+            width: 250px;
+            height: auto;
+            transform: translateX(300px);
+            transition: transform 0.4s ease-in-out;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        .cart.show {
+            transform: translateX(0);
+        }
+
+        .cart h2 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .cart-items {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+            color: #ddd;
+        }
+
+        .cart-items li {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+        }
+
+        .cart-items .item-name {
+            font-weight: bold;
+        }
+
+        .cart-items .item-quantity {
+            font-size: 0.9rem;
+            color: #ffcc00;
+        }
+
+        .cart-items .item-price {
+            font-size: 1.1rem;
+        }
+
+        .cart-items .remove-item {
+            color: #ff4d4d;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cart button {
+            background-color: #333;
+            color: #ddd;
+            border: 1px solid #444;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .cart button:hover {
+            background-color: #555;
+        }
+
+        /* Cart Icon */
+        .cart-icon {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #333;
+            color: #ddd;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Shinobi Store</h1>
+        <nav>
+            <a href="Home.html">Home</a>
+            <a href="aboutpage.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Login</a>
+
+        </nav>
+    </header>
+
+    <!-- Sparkle Effects -->
+    <div class="sparkles">
+        <div class="sparkle" style="top: 20%; left: 40%; animation-delay: 0s;"></div>
+        <div class="sparkle" style="top: 60%; left: 30%; animation-delay: 0.1s;"></div>
+        <div class="sparkle" style="top: 80%; left: 50%; animation-delay: 0.2s;"></div>
+        <div class="sparkle" style="top: 10%; left: 70%; animation-delay: 0.3s;"></div>
+    </div>
+
+<!-- Product List -->
+<div class="container">
+        <!-- First Product: Shuriken -->
+        <div class="product">
+            <img src="Shuriken.png" alt="Shuriken" class="zoom">
+            <h3>Shuriken</h3>
+            <p>A high-quality ninja star!</p>
+            <p>Price: 2000 PKR</p>
+            <button class="add-to-cart" data-product="Shuriken" data-price="2000">Add to Cart</button>
+        </div>
+
+        <!-- Second Product: Kunai -->
+        <div class="product">
+            <img src="Kunai.png" alt="Kunai" class="zoom">
+            <h3>Kunai</h3>
+            <p>Classic ninja tool used for combat and throwing!</p>
+            <p>Price: 2000 PKR</p>
+            <button class="add-to-cart" data-product="Kunai" data-price="2000">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="Rasengan.png" alt="Rasengan" class="zoom">
+            <h3>Rasengan Replica</h3>
+            <p>A beautiful replica of Naruto's signature jutsu!</p>
+            <p>Price: 7000 PKR</p>
+            <button class="add-to-cart" data-product="Rasengan Replica" data-price="7000">Add to Cart</button>
+        </div>
+
+        <!-- Fourth Product: Sharingan Contact Lenses -->
+        <div class="product">
+            <img src="SharinganLenses.jpg" alt="Sharingan" class="zoom">
+            <h3>Sharingan Contact Lenses</h3>
+            <p>Activate your inner Uchiha with these lenses!</p>
+            <p>Price: 4000 PKR</p>
+            <button class="add-to-cart" data-product="Sharingan Contact Lenses" data-price="4000">Add to Cart</button>
+        </div>
+
+        <!-- Fifth Product: Akatsuki Cloak -->
+        <div class="product">
+            <img src="AkatsukiCloak.png" alt="Akatsuki Cloak" class="zoom">
+            <h3>Akatsuki Cloak</h3>
+            <p>Wear the signature cloak of the feared Akatsuki organization!</p>
+            <p>Price: 14000 PKR</p>
+            <button class="add-to-cart" data-product="Akatsuki Cloak" data-price="14000">Add to Cart</button>
+        </div>
+
+        <!-- Sixth Product: Hokage Hat -->
+        <div class="product">
+            <img src="HokageHat.png" alt="Hokage Hat" class="zoom">
+            <h3>Hokage Hat</h3>
+            <p>Show your leadership as the Hokage with this iconic hat!</p>
+            <p>Price: 5000 PKR</p>
+            <button class="add-to-cart" data-product="Hokage Hat" data-price="5000">Add to Cart</button>
+        </div>
+
+        <!-- Seventh Product: Ninja Headband -->
+        <div class="product">
+            <img src="NinjaHeadband.png" alt="Ninja Headband" class="zoom">
+            <h3 >Ninja Headband</h3>
+            <p>Rep your village with this stylish ninja headband!</p>
+            <p>Price: 3000 PKR</p>
+            <button class="add-to-cart" data-product="Ninja Headband" data-price="3000">Add to Cart</button>
+        </div>
+    </div>
+
+
+
+   
+   
+   
+   
+   
+   
+   
+<div class="cart">
+    <h2>Shopping Cart</h2>
+    <ul class="cart-items">
+        <!-- Cart items will be dynamically added here -->
+    </ul>
+    <div class="total-price">
+        <strong>Total: </strong><span id="total-price">0 PKR</span>
+    </div>
+    <button id="checkout">Checkout</button>
+</div>
+
+<!-- Cart Icon -->
+<div class="cart-icon">
+    🛒
+</div>
+
+<script>
+    // Cart icon toggle
+    const cartIcon = document.querySelector('.cart-icon');
+    const cart = document.querySelector('.cart');
+
+    cartIcon.addEventListener('click', () => {
+        cart.classList.toggle('show');
+    });
+
+    // Cart functionality
+    const cartItemsList = document.querySelector('.cart-items');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    const totalPriceElement = document.getElementById('total-price');
+
+    let cartItems = [];
+
+    function updateCart() {
+        // Clear the current cart display
+        cartItemsList.innerHTML = '';
+
+        let totalPrice = 0;
+
+        // Loop through the cart and add items to the display
+        cartItems.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                    <span class="item-name">${item.product}</span>
+                    <span class="item-quantity">x${item.quantity}</span>
+                    <span class="item-price">${item.price} PKR</span>
+                    <span class="remove-item" data-product="${item.product}">Remove</span>
+                `;
+            cartItemsList.appendChild(li);
+
+            totalPrice += item.price * item.quantity;
+        });
+
+        totalPriceElement.textContent = totalPrice + ' PKR';
+    }
+
+    // Event listener for "Add to Cart" buttons
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const product = e.target.getAttribute('data-product');
+            const price = parseInt(e.target.getAttribute('data-price'));
+
+            // Check if the item is already in the cart
+            const existingItem = cartItems.find(item => item.product === product);
+
+            if (existingItem) {
+                // Increase quantity if already in cart
+                existingItem.quantity++;
+            } else {
+                // Add new item to cart
+                cartItems.push({ product, price, quantity: 1 });
+            }
+
+            // Update the cart display
+            updateCart();
+        });
+    });
+
+    // Remove item from the cart
+    cartItemsList.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-item')) {
+            const productToRemove = e.target.getAttribute('data-product');
+            cartItems = cartItems.filter(item => item.product !== productToRemove);
+            updateCart();
+        }
+    });
+
+    // Checkout button functionality (optional)
+    document.getElementById('checkout').addEventListener('click', () => {
+        alert('Checkout functionality is not implemented yet.');
+    });
+</script>
+    <script src="cursor.js"></script>
+
+</body>
+
+</html> 

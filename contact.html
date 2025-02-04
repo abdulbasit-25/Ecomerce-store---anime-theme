@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Kakashi Style</title>
+    <style>
+        /* General reset and box sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2e2e2e;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* Disable horizontal scrolling */
+            scroll-behavior: smooth;
+            /* Smooth scroll */
+        }
+
+        .background-video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .background-video-container video {
+            object-fit: cover;
+            /* Ensure video covers the entire background */
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        header {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 5px solid #9b9b9b;
+    position: relative; /* Allow header to move up with scrolling */
+    z-index: 1;
+    animation: slideDown 1s ease-out forwards;
+}
+
+
+        @keyframes slideDown {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        header nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        header nav ul li {
+            margin-right: 30px;
+            position: relative;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        header nav ul li:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        header nav ul li:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        header nav ul li:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000000;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #99ccff;
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .contact-section {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            max-width: 900px;
+            margin: 100px auto;
+            border-radius: 10px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInSection 1s ease-out;
+        }
+
+        @keyframes fadeInSection {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .contact-section h1 {
+            font-size: 45px;
+            margin-bottom: 20px;
+            color: #99ccff;
+            text-shadow: 2px 2px 4px #000000;
+            animation: textGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 5px #99ccff, 0 0 10px #99ccff, 0 0 15px #99ccff;
+            }
+
+            100% {
+                text-shadow: 0 0 20px #99ccff, 0 0 30px #99ccff, 0 0 40px #99ccff;
+            }
+        }
+
+        .contact-section p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #f1f1f1;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        .contact-info {
+            margin-bottom: 40px;
+        }
+
+        .contact-info p {
+            font-size: 18px;
+            color: #f1f1f1;
+            text-shadow: 2px 2px 4px #000000;
+            margin-bottom: 15px;
+        }
+
+        .contact-info a {
+            color: #66b3ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #99ccff;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .contact-form:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid #99ccff;
+            border-radius: 5px;
+            color: #f1f1f1;
+            font-size: 16px;
+            transition: border 0.3s ease-in-out;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #66b3ff;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: white;
+            font-style: italic;
+        }
+
+        .contact-form button {
+            padding: 14px 32px;
+            border: none;
+            background-color: #66b3ff;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form button:hover {
+            background-color: #3399ff;
+            transform: scale(1.1);
+        }
+
+        .contact-form button:active {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+            border-top: 3px solid #99ccff;
+            position: relative;
+            z-index: 2;
+            animation: fadeInFooter 1s ease-out;
+        }
+
+        @keyframes fadeInFooter {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: rotate(15deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-video-container">
+        <video autoplay loop muted>
+            <source src="Kakashi_videoloop.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="aboutpage.html">About Us</a></li>
+                <li><a href="Shopping aera.html">Shop</a></li>
+                <li><a href="login.html">Login</a></li>
+
+            </ul>
+        </nav>
+        <div class="logo">
+            <img src="scroll.png" alt="Kakashi Logo">
+        </div>
+    </header>
+
+    <section class="contact-section">
+        <h1>Contact Us</h1>
+        <p>Have questions or need help? Reach out to us, and one of our ninjas will get back to you as quickly as a
+            lightning-fast Chidori strike!</p>
+
+        <div class="contact-info">
+            <p><strong>Email:</strong> <a href="mailto:abdulbasit.alpha25@gmail.com">abdulbasit.alpha25@gmail.com</a>
+            </p>
+            <p><strong>Phone:</strong> <a href="tel:+923415878569">+92 341 5878569</a></p>
+        </div>
+
+        <div class="contact-form">
+            <form action="#">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Naruto Shop. All rights reserved. <br> Fueled by passion and creativity! <br> Created by Abdul
+            Basit</p>
+    </footer>
+        <script src="cursor.js"></script>
+
+</body>
+
+</html>

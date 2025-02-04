@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Naruto Shop</title>
+    <style>
+        /* General reset and box sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c2f36;
+            color: white;
+            background-image: url('sasuke-uchiha-3840x5271-12181.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: background-color 0.3s ease;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid #00f8ff;
+            position: relative;
+            z-index: 1;
+            animation: slideDown 0.8s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        header nav ul {
+            list-style-type: none;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        header nav ul li a {
+            color: #f1c232;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000000;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #00f8ff;
+            transform: scale(1.1);
+        }
+
+        .chidori-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            background: url('https://i.imgur.com/csmcOer.gif') center/contain no-repeat;
+            opacity: 0.2;
+            z-index: 0;
+            animation: chidoriGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes chidoriGlow {
+            0% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 0.2;
+            }
+        }
+
+        .about-section {
+            padding: 60px 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            max-width: 900px;
+            margin: 50px auto;
+            border-radius: 8px;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-section h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #00f8ff;
+            text-shadow: 2px 2px 4px #000000;
+            animation: textGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 5px #00f8ff, 0 0 10px #00f8ff, 0 0 15px #00f8ff;
+            }
+
+            100% {
+                text-shadow: 0 0 25px #00f8ff, 0 0 50px #00f8ff, 0 0 75px #00f8ff;
+            }
+        }
+
+        .about-section p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #f1c232;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        .team {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 250px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInMember 1.5s ease-out;
+        }
+
+        @keyframes fadeInMember {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .team-member:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #00f8ff;
+            margin-bottom: 15px;
+        }
+
+        .team-member h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #00f8ff;
+        }
+
+        .team-member p {
+            font-size: 16px;
+            color: #f1c232;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 14px;
+            border-top: 3px solid #00f8ff;
+            position: relative;
+            z-index: 2;
+            animation: fadeInFooter 1.5s ease-out;
+        }
+
+        @keyframes fadeInFooter {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        footer:hover {
+            background-color: #1a1d23;
+            transition: background-color 0.3s ease;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: rotate(15deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chidori-effect"></div>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Shopping aera.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            
+                <li><a href="login.html">Login</a></li>    
+
+            </ul>
+        </nav>
+        <div class="logo">
+            <img src="Naruto_logo.svg.png" alt="Naruto Logo">
+        </div>
+    </header>
+
+    <section class="about-section">
+        <h1>About Us</h1>
+        <p>Welcome to the ultimate destination for Naruto merchandise! We specialize in providing high-quality
+            Naruto-related items, from <strong>Kunai</strong> replicas to <strong>Rasengan</strong> models,
+            <strong>Sharingan</strong> accessories, and more! Whether you're a Shinobi-in-training or a seasoned Hokage,
+            we have something for every fan!
+        </p>
+
+        <div class="team">
+            <h2>Our Team</h2>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/150" alt="Naruto Team Member">
+                <h3>Naruto Uzumaki</h3>
+                <p>CEO & Founder</p>
+                <p>Like Naruto, we strive to bring you the most amazing products with all the energy of a ninja! Believe
+                    it!</p>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/150" alt="Sasuke Team Member">
+                <h3>Sasuke Uchiha</h3>
+                <p>Chief Developer</p>
+                <p>Our technology is as sharp as the Chidori. Sasuke ensures everything is built to perfection.</p>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/150" alt="Sakura Team Member">
+                <h3>Sakura Haruno</h3>
+                <p>Marketing Lead</p>
+                <p>Sakura is the backbone of our promotional strategies—strengthening our shop and bringing customers
+                    closer to the perfect purchase.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Naruto Shop. All rights reserved. <br> Powered by ninja spirit!</p>
+    </footer>
+
+    <script src="cursor.js"></script>
+</body>
+
+</html>
